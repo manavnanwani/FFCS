@@ -4,7 +4,7 @@
 
 ## Recorded Video
 
-<a href="https://drive.google.com/file/d/1htKN__Mm_uAoeRo1gzlTz51BSVX1v6ri/view?usp=sharing" target="_blank"><strong>Link »</strong></a>
+<a href="https://drive.google.com/file/d/1nT9qGjB-DKRZZJM7bAp2By9g3mo9tNU0/view?usp=sharing" target="_blank"><strong>Link »</strong></a>
 
 ## Getting started
 
