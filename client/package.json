@@ -31,6 +31,9 @@
   "dependencies": {
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
+    "@fullcalendar/daygrid": "^5.9.0",
+    "@fullcalendar/list": "^5.9.0",
+    "@fullcalendar/react": "^5.9.0",
     "@iconify/icons-ant-design": "^1.1.0",
     "@iconify/icons-eva": "^1.1.0",
     "@iconify/icons-ic": "^1.1.9",
@@ -51,6 +54,7 @@
     "history": "^5.0.1",
     "leaflet": "^1.7.1",
     "lodash": "^4.17.21",
+    "moment": "^2.29.1",
     "numeral": "^2.0.6",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",

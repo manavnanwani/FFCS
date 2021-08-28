@@ -153,6 +153,7 @@ export default function Courses() {
                       <TableCell align="center">Faculty</TableCell>
                       <TableCell align="center">Building</TableCell>
                       <TableCell align="center">Time</TableCell>
+                      <TableCell align="center">Seats Left</TableCell>
                       <TableCell align="center">Actions</TableCell>
                     </TableRow>
                   </TableHead>
@@ -166,8 +167,10 @@ export default function Courses() {
                         <TableCell align="center">{course.faculty}</TableCell>
                         <TableCell align="center">{course.building}</TableCell>
                         <TableCell align="center">{course.time}</TableCell>
+                        <TableCell align="center">{65 - course.numOfStudents.length}</TableCell>
                         <TableCell align="center">
-                          {course.numOfStudents.includes(studentId) ? (
+                          {course.numOfStudents.includes(studentId) ||
+                          65 - course.numOfStudents.length === 0 ? (
                             <Button variant="contained" disabled>
                               Added
                             </Button>
