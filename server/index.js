@@ -5,6 +5,7 @@ import cors from "cors";
 
 import studentRoutes from "./routes/student.js";
 import classesRoutes from "./routes/classes.js";
+import classRoutes from "./routes/class.js";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(cors());
 
 app.use("/student", studentRoutes);
 app.use("/classes", classesRoutes);
+app.use("/class", classRoutes);
 
 const PORT = 5000;
 

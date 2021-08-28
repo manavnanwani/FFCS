@@ -36,6 +36,7 @@ export default function RegisterForm() {
       .then((res) => {
         sessionStorage.setItem('name', res.data.name);
         sessionStorage.setItem('regNo', res.data.regNo);
+        sessionStorage.setItem('studentId', res.data.id);
         navigate('/dashboard', { replace: true });
       })
       .catch((err) => {

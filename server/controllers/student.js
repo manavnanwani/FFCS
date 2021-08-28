@@ -8,9 +8,11 @@ export const signin = async (req, res) => {
 
     if (!existingUser)
       return res.status(404).json({ message: "User does not exist " });
-    return res
-      .status(200)
-      .json({ name: existingUser[0].name, regNo: existingUser[0].regNo });
+    return res.status(200).json({
+      name: existingUser[0].name,
+      regNo: existingUser[0].regNo,
+      id: existingUser[0]._id,
+    });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
   }
@@ -29,7 +31,13 @@ export const signup = async (req, res) => {
       name,
     });
 
-    return res.status(200).json({ name: result.name, regNo: result.regNo });
+    return res
+      .status(200)
+      .json({
+        name: result.name,
+        regNo: result.regNo,
+        id: existingUser[0]._id,
+      });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
   }

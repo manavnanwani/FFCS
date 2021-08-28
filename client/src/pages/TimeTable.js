@@ -1,42 +1,32 @@
-import React, { useState } from 'react';
-
-import { Icon } from '@iconify/react';
+import { useState, useEffect } from 'react';
 // material
 import {
+  Container,
   Card,
+  Typography,
   Table,
-  Stack,
   TableRow,
   TableBody,
   TableCell,
-  Container,
-  Typography,
-  TableContainer,
-  Divider,
   TableHead,
-  InputAdornment,
-  Box,
-  OutlinedInput,
+  TableContainer,
   Button
 } from '@material-ui/core';
+// components
+
+import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-
-// components
-import axios from 'axios';
-import searchFill from '@iconify/icons-eva/search-fill';
+import Scrollbar from '../components/Scrollbar';
 import Page from '../components/Page';
 
-import Scrollbar from '../components/Scrollbar';
 // ----------------------------------------------------------------------
 
-export default function Courses() {
-  const [courseCode, setCourseCode] = useState('');
+export default function EcommerceShop() {
   const [allCourses, setAllCourses] = useState([]);
-  const [courseFound, setCourseFound] = useState(true);
+  const studentId = sessionStorage.getItem('studentId');
   const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState('');
 
   const handleClick = () => {
     setOpen(true);
@@ -50,72 +40,34 @@ export default function Courses() {
     setOpen(false);
   };
 
-  const searchCourse = async (e) => {
-    if (courseCode !== '') {
-      await axios
-        .get(`http://localhost:5000/classes/${courseCode}`)
-        .then((res) => {
-          if (res !== undefined) {
-            setAllCourses(res.data.searchResults);
-            setCourseFound(true);
-          } else {
-            setAllCourses([]);
-            setCourseFound(false);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      setAllCourses([]);
-    }
-  };
-
-  const addCourse = async (course) => {
-    const studentId = sessionStorage.getItem('studentId');
-
+  useEffect(() => {
     axios
-      .post(`http://localhost:5000/class/${studentId}`, course)
+      .get(`http://localhost:5000/class/${studentId}`)
       .then((res) => {
-        if (res.status === 200) {
-          setMessage('Course Added');
-          handleClick();
-        } else if (res.status === 201) {
-          setMessage(res.data.message);
-          handleClick();
-        }
+        setAllCourses(res.data.selectedCourses);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
+  }, []);
+
+  const deleteCourse = (id) => {
+    axios
+      .delete(`http://localhost:5000/class/${studentId}/${id}`)
+      .then((res) => {
+        setAllCourses(res.data);
+        handleClick();
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
-    <Page title="Courses | FFCS">
+    <Page title="TimeTable | FFCS">
       <Container>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-          <Typography variant="h4" gutterBottom>
-            All Courses
-          </Typography>
-        </Stack>
+        <Typography variant="h4" sx={{ mb: 5 }}>
+          TimeTable
+        </Typography>
 
         <Card sx={{ p: 3 }}>
-          <OutlinedInput
-            value={courseCode}
-            size="small"
-            onChange={(e) => setCourseCode(e.target.value)}
-            placeholder="Search user..."
-            startAdornment={
-              <InputAdornment position="start">
-                <Box component={Icon} icon={searchFill} sx={{ color: 'text.disabled' }} />
-              </InputAdornment>
-            }
-          />
-          <Button variant="contained" sx={{ ml: 3 }} onClick={searchCourse}>
-            Search
-          </Button>
-          <Divider sx={{ my: 3 }} />
-          {allCourses?.length > 0 && (
+          {allCourses?.length > 0 ? (
             <Scrollbar>
               <TableContainer sx={{ minWidth: 800 }}>
                 <Table aria-label="simple table">
@@ -140,8 +92,12 @@ export default function Courses() {
                         <TableCell align="center">{course.building}</TableCell>
                         <TableCell align="center">{course.time}</TableCell>
                         <TableCell align="center">
-                          <Button variant="outlined" onClick={() => addCourse(course)}>
-                            Add
+                          <Button
+                            variant="outlined"
+                            color="error"
+                            onClick={() => deleteCourse(course._id)}
+                          >
+                            Delete
                           </Button>
                         </TableCell>
                       </TableRow>
@@ -150,9 +106,9 @@ export default function Courses() {
                 </Table>
               </TableContainer>
             </Scrollbar>
+          ) : (
+            'No Courses Added'
           )}
-          {!courseFound && 'No such course found'}
-          {allCourses?.length === 0 && courseCode.length >= 0 && 'Search with course code'}
         </Card>
       </Container>
       <Snackbar
@@ -163,7 +119,7 @@ export default function Courses() {
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}
-        message={message}
+        message="Course Deleted"
         action={
           <>
             <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>

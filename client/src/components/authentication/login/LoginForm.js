@@ -30,9 +30,9 @@ export default function LoginForm() {
     await axios
       .get(`http://localhost:5000/student/${regNo}`)
       .then((res) => {
-        console.log(res);
         sessionStorage.setItem('name', res.data.name);
         sessionStorage.setItem('regNo', res.data.regNo);
+        sessionStorage.setItem('studentId', res.data.id);
         navigate('/dashboard', { replace: true });
       })
       .catch((err) => {

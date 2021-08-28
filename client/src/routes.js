@@ -6,7 +6,7 @@ import LogoOnlyLayout from './layouts/LogoOnlyLayout';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import DashboardApp from './pages/DashboardApp';
-import Products from './pages/Products';
+import TimeTable from './pages/TimeTable';
 import Blog from './pages/Blog';
 import Courses from './pages/Courses';
 import NotFound from './pages/Page404';
@@ -22,7 +22,7 @@ export default function Router() {
         { path: '/', element: <Navigate to="/dashboard/app" replace /> },
         { path: 'app', element: <DashboardApp /> },
         { path: 'courses', element: <Courses /> },
-        { path: 'timetable', element: <Products /> },
+        { path: 'timetable', element: <TimeTable /> },
         { path: 'map', element: <Blog /> }
       ]
     },
