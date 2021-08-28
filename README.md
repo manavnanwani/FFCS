@@ -1,4 +1,4 @@
-## Submission for MotorQ Application Enginner
+## Submission for MotorQ Assignment in the Application Engineer Track
 
 ![preview](client/public/static/preview.png)
 
