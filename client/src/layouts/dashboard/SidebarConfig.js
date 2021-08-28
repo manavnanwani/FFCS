@@ -1,12 +1,8 @@
 import { Icon } from '@iconify/react';
-import pieChart2Fill from '@iconify/icons-eva/pie-chart-2-fill';
-import peopleFill from '@iconify/icons-eva/people-fill';
-import shoppingBagFill from '@iconify/icons-eva/shopping-bag-fill';
-import fileTextFill from '@iconify/icons-eva/file-text-fill';
-import lockFill from '@iconify/icons-eva/lock-fill';
-import personAddFill from '@iconify/icons-eva/person-add-fill';
-import alertTriangleFill from '@iconify/icons-eva/alert-triangle-fill';
-
+import gridFill from '@iconify/icons-eva/grid-fill';
+import plusSquareFill from '@iconify/icons-eva/plus-square-fill';
+import mapFill from '@iconify/icons-eva/map-fill';
+import clockFill from '@iconify/icons-eva/clock-fill';
 // ----------------------------------------------------------------------
 
 const getIcon = (name) => <Icon icon={name} width={22} height={22} />;
@@ -15,22 +11,22 @@ const sidebarConfig = [
   {
     title: 'dashboard',
     path: '/dashboard/app',
-    icon: getIcon(pieChart2Fill)
+    icon: getIcon(gridFill)
   },
   {
     title: 'Courses',
     path: '/dashboard/courses',
-    icon: getIcon(peopleFill)
+    icon: getIcon(plusSquareFill)
   },
   {
     title: 'Timetable',
     path: '/dashboard/timetable',
-    icon: getIcon(shoppingBagFill)
+    icon: getIcon(clockFill)
   },
   {
     title: 'Map',
     path: '/dashboard/map',
-    icon: getIcon(fileTextFill)
+    icon: getIcon(mapFill)
   }
 ];
 
