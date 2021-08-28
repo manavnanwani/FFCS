@@ -2,6 +2,10 @@
 
 ![preview](client/public/static/preview.png)
 
+## Recorded Video
+
+<a href="https://drive.google.com/file/d/1htKN__Mm_uAoeRo1gzlTz51BSVX1v6ri/view?usp=sharing" target="_blank"><strong>Link »</strong></a>
+
 ## Getting started
 
 - Recommended `node js 14+` and `npm 6+`
