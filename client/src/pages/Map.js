@@ -30,7 +30,7 @@ export default function Map() {
   const searchCourse = async () => {
     if (courseCode !== '') {
       await axios
-        .get(`http://localhost:5000/classes/${courseCode}`)
+        .get(`http://localhost:5000/classes-on-map/${courseCode}`)
         .then((res) => {
           console.log(res);
           if (res?.data?.message !== 'No courses found') {
@@ -52,7 +52,7 @@ export default function Map() {
   return (
     <Page title="Map | FFCS">
       <Container>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5} mt={3}>
+        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5} mt={1}>
           <Typography variant="h4" gutterBottom>
             Map
           </Typography>
@@ -74,7 +74,7 @@ export default function Map() {
           center={position}
           zoom={15}
           scrollWheelZoom
-          style={{ height: '500px', width: '100%' }}
+          style={{ height: '480px', width: '100%' }}
         >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

@@ -23,7 +23,7 @@ export default function ViewMap() {
         View Map
       </Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-        Check Class Location
+        Locate Classes
       </Typography>
     </RootStyle>
   );

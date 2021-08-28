@@ -72,11 +72,11 @@ export default function Courses() {
       await axios
         .get(`http://localhost:5000/classes/${courseCode}`)
         .then((res) => {
-          if (res !== undefined) {
+          console.log(res.data);
+          if (res.data.searchResults !== undefined) {
             setAllCourses(res.data.searchResults);
             setCourseFound(true);
           } else {
-            setAllCourses([]);
             setCourseFound(false);
           }
         })
@@ -132,9 +132,14 @@ export default function Courses() {
           </Button>
           {courseCode.length > 0 && (
             <Button variant="outlined" sx={{ ml: 3 }} onClick={getAllCourses}>
-              Clear
+              Reset
             </Button>
           )}
+          <span>
+            <p style={{ color: 'red', fontSize: '12px' }}>
+              {!courseFound && 'No such course found'}
+            </p>
+          </span>
           <Divider sx={{ my: 3 }} />
           {allCourses?.length > 0 && (
             <Scrollbar>
@@ -172,7 +177,7 @@ export default function Courses() {
               </TableContainer>
             </Scrollbar>
           )}
-          {!courseFound && 'No such course found'}
+
           {allCourses?.length === 0 && courseCode.length >= 0 && 'Search with course code'}
         </Card>
       </Container>

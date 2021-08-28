@@ -1,9 +1,14 @@
 import Classes from "../models/classes.js";
-import Student from "../models/student.js";
 
 export const getAllCourses = async (req, res) => {
   const searchResults = await Classes.find();
-  return res.status(200).json({ searchResults });
+  Array.prototype.sortBy = function (p) {
+    return this.slice(0).sort(function (a, b) {
+      return a[p] > b[p] ? 1 : a[p] < b[p] ? -1 : 0;
+    });
+  };
+  const newArr = await searchResults.sortBy("courseCode");
+  return res.status(200).json({ searchResults: newArr });
 };
 
 export const getCourse = async (req, res) => {

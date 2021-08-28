@@ -4,8 +4,17 @@ import Student from "../models/student.js";
 export const getAllCourse = async (req, res) => {
   const { id: studentId } = req.params;
   const student = await Student.findById(studentId);
-  if (student.selectedCourses.length > 0)
-    return res.status(200).json({ selectedCourses: student.selectedCourses });
+
+  const searchResults = student.selectedCourses;
+  Array.prototype.sortBy = function (p) {
+    return this.slice(0).sort(function (a, b) {
+      return a[p] > b[p] ? 1 : a[p] < b[p] ? -1 : 0;
+    });
+  };
+  const newArr = await searchResults.sortBy("courseCode");
+
+  if (newArr.length > 0)
+    return res.status(200).json({ selectedCourses: newArr });
   else return res.status(201).json({ message: "No courses added!" });
 };
 

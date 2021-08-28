@@ -31,14 +31,13 @@ export const signup = async (req, res) => {
       name,
     });
 
-    return res
-      .status(200)
-      .json({
-        name: result.name,
-        regNo: result.regNo,
-        id: existingUser[0]._id,
-      });
+    return res.status(200).json({
+      name: result.name,
+      regNo: result.regNo,
+      id: result._id,
+    });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Something went wrong" });
   }
 };
