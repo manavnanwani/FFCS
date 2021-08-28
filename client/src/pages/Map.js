@@ -12,7 +12,9 @@ import {
 import { MapContainer, TileLayer, Marker, Popup, Circle, Tooltip } from 'react-leaflet';
 import axios from 'axios';
 import searchFill from '@iconify/icons-eva/search-fill';
+import { API_SERVICE } from '../config/API';
 import Page from '../components/Page';
+
 // ----------------------------------------------------------------------
 
 // ----------------------------------------------------------------------
@@ -30,7 +32,7 @@ export default function Map() {
   const searchCourse = async () => {
     if (courseCode !== '') {
       await axios
-        .get(`http://localhost:5000/classes-on-map/${courseCode}`)
+        .get(`${API_SERVICE}/classes-on-map/${courseCode}`)
         .then((res) => {
           console.log(res);
           if (res?.data?.message !== 'No courses found') {

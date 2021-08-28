@@ -19,6 +19,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Scrollbar from '../components/Scrollbar';
+import { API_SERVICE } from '../config/API';
 import Page from '../components/Page';
 
 // ----------------------------------------------------------------------
@@ -42,7 +43,7 @@ export default function EcommerceShop() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/class/${studentId}`)
+      .get(`${API_SERVICE}/class/${studentId}`)
       .then((res) => {
         setAllCourses(res.data.selectedCourses);
       })
@@ -51,7 +52,7 @@ export default function EcommerceShop() {
 
   const deleteCourse = (id) => {
     axios
-      .delete(`http://localhost:5000/class/${studentId}/${id}`)
+      .delete(`${API_SERVICE}/class/${studentId}/${id}`)
       .then((res) => {
         setAllCourses(res.data);
         handleClick();

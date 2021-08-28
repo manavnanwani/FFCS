@@ -26,6 +26,7 @@ import CloseIcon from '@material-ui/icons/Close';
 // components
 import axios from 'axios';
 import searchFill from '@iconify/icons-eva/search-fill';
+import { API_SERVICE } from '../config/API';
 import Page from '../components/Page';
 
 import Scrollbar from '../components/Scrollbar';
@@ -57,7 +58,7 @@ export default function Courses() {
   const getAllCourses = async (e) => {
     setCourseCode('');
     await axios
-      .get(`http://localhost:5000/classes/`)
+      .get(`${API_SERVICE}/classes/`)
       .then((res) => {
         setAllCourses(res.data.searchResults);
         setCourseFound(true);
@@ -70,7 +71,7 @@ export default function Courses() {
   const searchCourse = async (e) => {
     if (courseCode !== '') {
       await axios
-        .get(`http://localhost:5000/classes/${courseCode}`)
+        .get(`${API_SERVICE}/classes/${courseCode}`)
         .then((res) => {
           console.log(res.data);
           if (res.data.searchResults !== undefined) {
@@ -91,7 +92,7 @@ export default function Courses() {
   const addCourse = async (course) => {
     const studentId = sessionStorage.getItem('studentId');
     axios
-      .post(`http://localhost:5000/class/${studentId}`, course)
+      .post(`${API_SERVICE}/class/${studentId}`, course)
       .then((res) => {
         if (res.status === 200) {
           setMessage('Course Added');

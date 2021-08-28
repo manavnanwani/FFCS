@@ -9,6 +9,7 @@ import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { Stack, TextField, IconButton, InputAdornment } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
 import axios from 'axios';
+import { API_SERVICE } from '../../../config/API';
 
 // ----------------------------------------------------------------------
 
@@ -28,7 +29,7 @@ export default function RegisterForm() {
 
   const register = async () => {
     await axios
-      .post('http://localhost:5000/student', {
+      .post(`${API_SERVICE}/student`, {
         name: `${studentInfo.firstName} ${studentInfo.lastName}`,
         regNo: studentInfo.regNo,
         password: studentInfo.password

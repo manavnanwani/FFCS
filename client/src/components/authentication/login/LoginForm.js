@@ -16,8 +16,8 @@ import {
   FormControlLabel
 } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
-
 import axios from 'axios';
+import { API_SERVICE } from '../../../config/API';
 
 // ----------------------------------------------------------------------
 
@@ -28,7 +28,7 @@ export default function LoginForm() {
 
   const login = async () => {
     await axios
-      .get(`http://localhost:5000/student/${regNo}`)
+      .get(`${API_SERVICE}/student/${regNo}`)
       .then((res) => {
         sessionStorage.setItem('name', res.data.name);
         sessionStorage.setItem('regNo', res.data.regNo);
