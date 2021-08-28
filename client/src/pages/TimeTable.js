@@ -63,7 +63,7 @@ export default function EcommerceShop() {
     <Page title="TimeTable | FFCS">
       <Container>
         <Typography variant="h4" sx={{ mb: 5 }}>
-          TimeTable
+          Time Table
         </Typography>
 
         <Card sx={{ p: 3 }}>
