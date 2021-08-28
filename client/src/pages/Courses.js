@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Icon } from '@iconify/react';
 // material
@@ -50,6 +50,23 @@ export default function Courses() {
     setOpen(false);
   };
 
+  useEffect(() => {
+    getAllCourses();
+  }, []);
+
+  const getAllCourses = async (e) => {
+    setCourseCode('');
+    await axios
+      .get(`http://localhost:5000/classes/`)
+      .then((res) => {
+        setAllCourses(res.data.searchResults);
+        setCourseFound(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const searchCourse = async (e) => {
     if (courseCode !== '') {
       await axios
@@ -73,7 +90,6 @@ export default function Courses() {
 
   const addCourse = async (course) => {
     const studentId = sessionStorage.getItem('studentId');
-
     axios
       .post(`http://localhost:5000/class/${studentId}`, course)
       .then((res) => {
@@ -104,7 +120,7 @@ export default function Courses() {
             value={courseCode}
             size="small"
             onChange={(e) => setCourseCode(e.target.value)}
-            placeholder="Search user..."
+            placeholder="Search course..."
             startAdornment={
               <InputAdornment position="start">
                 <Box component={Icon} icon={searchFill} sx={{ color: 'text.disabled' }} />
@@ -114,6 +130,11 @@ export default function Courses() {
           <Button variant="contained" sx={{ ml: 3 }} onClick={searchCourse}>
             Search
           </Button>
+          {courseCode.length > 0 && (
+            <Button variant="outlined" sx={{ ml: 3 }} onClick={getAllCourses}>
+              Clear
+            </Button>
+          )}
           <Divider sx={{ my: 3 }} />
           {allCourses?.length > 0 && (
             <Scrollbar>
@@ -161,7 +182,7 @@ export default function Courses() {
           horizontal: 'left'
         }}
         open={open}
-        autoHideDuration={6000}
+        autoHideDuration={1500}
         onClose={handleClose}
         message={message}
         action={

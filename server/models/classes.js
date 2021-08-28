@@ -7,6 +7,7 @@ const classesSchema = mongoose.Schema({
   time: { type: String, required: true },
   building: { type: String, required: true },
   numOfStudents: { type: Number },
+  location: { type: Array },
 });
 
 const Classes = mongoose.model("Classes", classesSchema);

@@ -16,6 +16,7 @@ app.use(cors());
 app.use("/student", studentRoutes);
 app.use("/classes", classesRoutes);
 app.use("/class", classRoutes);
+// app.use("/classes-on-map");
 
 const PORT = 5000;
 

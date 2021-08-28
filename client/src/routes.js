@@ -7,7 +7,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import DashboardApp from './pages/DashboardApp';
 import TimeTable from './pages/TimeTable';
-import Blog from './pages/Blog';
+import Map from './pages/Map';
 import Courses from './pages/Courses';
 import NotFound from './pages/Page404';
 
@@ -23,7 +23,7 @@ export default function Router() {
         { path: 'app', element: <DashboardApp /> },
         { path: 'courses', element: <Courses /> },
         { path: 'timetable', element: <TimeTable /> },
-        { path: 'map', element: <Blog /> }
+        { path: 'map', element: <Map /> }
       ]
     },
     {
