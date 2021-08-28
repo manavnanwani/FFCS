@@ -105,7 +105,7 @@ export default function Courses() {
         console.log(err);
       });
   };
-
+  const studentId = sessionStorage.getItem('studentId');
   return (
     <Page title="Courses | FFCS">
       <Container>
@@ -166,9 +166,15 @@ export default function Courses() {
                         <TableCell align="center">{course.building}</TableCell>
                         <TableCell align="center">{course.time}</TableCell>
                         <TableCell align="center">
-                          <Button variant="outlined" onClick={() => addCourse(course)}>
-                            Add
-                          </Button>
+                          {course.numOfStudents.includes(studentId) ? (
+                            <Button variant="contained" disabled>
+                              Added
+                            </Button>
+                          ) : (
+                            <Button variant="outlined" onClick={() => addCourse(course)}>
+                              Add
+                            </Button>
+                          )}
                         </TableCell>
                       </TableRow>
                     ))}

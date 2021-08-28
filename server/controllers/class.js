@@ -40,7 +40,7 @@ export const addCourse = async (req, res) => {
     new: true,
   });
 
-  course.numOfStudents = course.numOfStudents + 1;
+  course.numOfStudents.push(studentId);
   const updatedClasses = await Classes.findByIdAndUpdate(course._id, course, {
     new: true,
   });
@@ -64,7 +64,10 @@ export const deleteCourse = async (req, res) => {
     new: true,
   });
 
-  course.numOfStudents = course.numOfStudents - 1;
+  course.numOfStudents = course.numOfStudents.filter(
+    (c) => c !== String(studentId)
+  );
+
   const updatedClasses = await Classes.findByIdAndUpdate(course._id, course, {
     new: true,
   });

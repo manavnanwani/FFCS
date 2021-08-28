@@ -6,7 +6,7 @@ const classesSchema = mongoose.Schema({
   faculty: { type: String, required: true },
   time: { type: String, required: true },
   building: { type: String, required: true },
-  numOfStudents: { type: Number },
+  numOfStudents: { type: Array },
   location: { type: Array },
 });
 

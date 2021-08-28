@@ -80,20 +80,17 @@ export default function Map() {
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {allCourses.map((course) => {
-            console.log(course.location);
-            return (
-              <Marker position={course.location}>
-                <Tooltip>
-                  Course Name : {course.courseName} <br />
-                  Building Name: {course.building}
-                  <br />
-                  Number of students registered to this class:{course.numOfStudents}
-                </Tooltip>
-                <TooltipCircle posi={course.location} />
-              </Marker>
-            );
-          })}
+          {allCourses.map((course) => (
+            <Marker position={course.location}>
+              <Tooltip>
+                Course Name : {course.courseName} <br />
+                Building Name: {course.building}
+                <br />
+                Number of students registered to this class:{course.numOfStudents.length}
+              </Tooltip>
+              <TooltipCircle posi={course.location} />
+            </Marker>
+          ))}
         </MapContainer>
       </Container>
     </Page>
